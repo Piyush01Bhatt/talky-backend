@@ -1,14 +1,13 @@
 //importing
-import express from 'express'
+import express from "express"
 import mongoose from 'mongoose'
 import cors from 'cors'
 import bodyParser from 'body-parser'
-import {userRouter} from './routes/user.js'
-import {friendsRouter} from './routes/friends.js'
 import socket from 'socket.io'
 import http from 'http'
-import {socketHandler} from "./utils/socketHandler.js"
+import {socketHandler} from "./socket_handlers/socketHandler.js"
 import dotenv from "dotenv"
+import appRoutes from './routes.js'
 
 dotenv.config()
 
@@ -37,22 +36,11 @@ db.once('open', ()=>{
 })
 
 //socket 
-
 io.on('connection', socketHandler)
 
-// api routes
-app.get('/', (req,res)=>{
-    console.log('/ route')
-    return res.status(200).send("hello world")
-})
+// app routes
+appRoutes(app)
 
-app.use("/user", userRouter)
 
-/** friend routes */
-friendsRouter.use((req,res,next)=>{
-    res.io = io;
-    next();
-})
-app.use("/friends", friendsRouter)
 
 
