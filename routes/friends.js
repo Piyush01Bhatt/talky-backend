@@ -1,6 +1,6 @@
 import express from "express"
-import { checkFriendRequest, saveFriendRequest } from "../utils/friendRequestHandler.js";
-import FriendsModel from "../utils/dbFriends.js";
+import { checkFriendRequest, saveFriendRequest } from "../route_handlers/friendRequestHandler.js";
+import FriendsModel from "../db_models/dbFriends.js";
 export const friendsRouter = express.Router();
 
 // friend request route

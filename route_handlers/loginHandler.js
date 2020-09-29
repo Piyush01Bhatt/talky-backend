@@ -1,5 +1,5 @@
 import crypto from "crypto";
-import {UserModel} from "../utils/dbUser.js"
+import {UserModel} from "../db_models/dbUser.js"
 
 export default function checkLoginRequest(req){
     const reqBody = req.body;

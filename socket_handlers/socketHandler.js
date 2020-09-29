@@ -1,4 +1,4 @@
-import { acceptFriendRequest } from "./acceptReqEventHandler.js"
+import { acceptFriendRequest } from "../socket_handlers/acceptReqEventHandler.js"
 
 export function socketHandler(socket){
     const id = socket.handshake.query.id

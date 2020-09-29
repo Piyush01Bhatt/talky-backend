@@ -1,12 +1,12 @@
 import express from "express";
-import { TempUserModel, UserModel } from "../utils/dbUser.js";
+import { TempUserModel, UserModel } from "../db_models/dbUser.js";
 import crypto from "crypto";
 import { genOtp } from "../utils/otpGen.js";
 import sendMail from "../utils/sendMail.js";
-import checkLoginRequest, { checkPassword, findUser } from "../utils/loginHandler.js";
-import { checkGetUsersRequest, getFriendRequestInfo, queryDb } from "../utils/getUsersHandler.js";
-import { checkRegisterAuthRequest, findTempUser, verifyOtp } from "../utils/registerAuthHandler.js"
-import { checkAlreadyExists, checkRegisterRequest } from "../utils/registerHandler.js"
+import checkLoginRequest, { checkPassword, findUser } from "../route_handlers/loginHandler.js";
+import { checkGetUsersRequest, getFriendRequestInfo, queryDb } from "../route_handlers/getUsersHandler.js";
+import { checkRegisterAuthRequest, findTempUser, verifyOtp } from "../route_handlers/registerAuthHandler.js"
+import { checkAlreadyExists, checkRegisterRequest } from "../route_handlers/registerHandler.js"
 
 export const userRouter = express.Router();
 
@@ -67,22 +67,22 @@ userRouter.post(
         email: dbData.email,
         password: dbData.password,
       };
-      
+
       await UserModel.create(permUser)
       res.status(201).send({
         body: {
           success: true,
           message: "user created successfully",
-        },
-      });
+          },
+        });
     } catch (err) {
       console.log(err);
-      return res.status(400).send({
-        body: {
-          success: false,
-          message: err.message,
-        },
-      });
+        return res.status(400).send({
+          body: {
+            success: false,
+            message: err.message,
+          },
+        });
     }
   }
 );
@@ -128,7 +128,7 @@ userRouter.get('/get_users',
           message: "found users"
         }
       })
-    } catch (err){
+    } catch (err) {
       res.status(400).send({
         body: {
           success: false,

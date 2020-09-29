@@ -1,4 +1,4 @@
-import FriendsModel from "../utils/dbFriends.js";
+import FriendsModel from "../db_models/dbFriends.js";
 
 export function checkFriendRequest(req, res, next) {
   /**

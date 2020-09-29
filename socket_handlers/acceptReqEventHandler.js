@@ -1,4 +1,4 @@
-import FriendsModel from "./dbFriends.js"
+import FriendsModel from "../db_models/dbFriends.js"
 
 export async function acceptFriendRequest(request, socket) {
     try {

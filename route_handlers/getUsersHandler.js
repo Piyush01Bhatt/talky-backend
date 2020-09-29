@@ -1,5 +1,5 @@
-import { UserModel } from "../utils/dbUser.js"
-import FriendsModel from "../utils/dbFriends.js"
+import { UserModel } from "../db_models/dbUser.js"
+import FriendsModel from "../db_models/dbFriends.js"
 
 export function checkGetUsersRequest(req, res, next) {
     const reqBody = req.body;

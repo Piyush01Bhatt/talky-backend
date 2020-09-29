@@ -1,4 +1,4 @@
-import { UserModel }from "./dbUser.js";
+import { UserModel }from "../db_models/dbUser.js";
 
 export function checkRegisterRequest(req, res, next) {
   const reqBody = req.body;

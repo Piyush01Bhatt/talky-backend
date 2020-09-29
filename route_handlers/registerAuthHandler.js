@@ -1,12 +1,10 @@
-import { TempUserModel, UserModel } from "./dbUser.js";
+import { TempUserModel, UserModel } from "../db_models/dbUser.js";
 
 export function checkRegisterAuthRequest(req, res, next) {
   const reqBody = req.body;
   if (
     reqBody &&
-    reqBody.name &&
     reqBody.email &&
-    reqBody.password &&
     reqBody.otp
   ) {
     next();
