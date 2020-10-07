@@ -1,25 +1,20 @@
-import { userRouter } from './routers/user.js'
-import { friendsRouter } from './routers/friends.js'
+const userRouter = require('./routes/userRoute')
+const friendsRouter = require('./routes/friendsRoute')
 
 // api routes
-const appRoutes = (app) => {
-    /** default route */
-    app.get('/', (req, res) => {
-        console.log('/ route')
-        return res.status(200).send("welcome to talky")
-    })
+const appRoutes = (app, io) => {
+  /** default route */
+  app.get('/', (req, res) => {
+    console.log('/ route')
+    return res.status(200).send('welcome to talky')
+  })
 
-    /** login,register and auth route */
-    app.use("/user", userRouter)
+  /** login,register and auth route */
+  app.use('/user', userRouter)
 
-    /** friend routes */
-    friendsRouter.use((req, res, next) => {
-        res.io = io;
-        next();
-    })
-
-    app.use("/friends", friendsRouter)
+  /** friend routes */
+  app.use('/friends', friendsRouter)
 }
 
 /** exporting app */
-export default appRoutes;
+module.exports = appRoutes

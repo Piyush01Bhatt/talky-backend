@@ -1,27 +1,29 @@
-import nodemailer from "nodemailer";
+const nodemailer = require('nodemailer')
 
-export default function sendMail(emailId, subj, txt) {
-    const transporter = nodemailer.createTransport({
-        host: "smtp.mailtrap.io",
-        port: 2525,
-        auth: {
-          user: "1a5c93d52a0e00",
-          pass: "03df48b9bcc41d"
-        }
-    });
+function sendMail (emailId, subj, txt) {
+  const transporter = nodemailer.createTransport({
+    host: 'smtp.mailtrap.io',
+    port: 2525,
+    auth: {
+      user: process.env.MT_USER,
+      pass: process.env.MT_PASSWORD
+    }
+  })
 
   const mailOptions = {
-    from: "hello@gmail.com",
+    from: 'hello@gmail.com',
     to: emailId,
     subject: subj,
-    text: txt,
-  };
+    text: txt
+  }
 
   transporter.sendMail(mailOptions, (error, info) => {
     if (error) {
-      console.log(error);
+      console.log(error)
     } else {
-      console.log("Email sent: " + info.response);
+      console.log('Email sent: ' + info.response)
     }
-  });
+  })
 }
+
+module.exports = sendMail

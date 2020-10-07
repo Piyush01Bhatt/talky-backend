@@ -1,24 +1,26 @@
-import FriendsModel from "../db_models/dbFriends.js"
+const FriendsModel = require('../models/dbFriends')
 
-export async function acceptFriendRequest(request, socket) {
-    try {
-        if(checkRequest(request)){
-            
-        }
-    } catch (e) {
-        console.log(e.message)
+async function acceptFriendRequest (request, socket) {
+  try {
+    if (checkRequest(request)) {
+
     }
+  } catch (e) {
+    console.log(e.message)
+  }
 }
 
-function checkRequest(req) {
-    if (req &&
+function checkRequest (req) {
+  if (req &&
         req.id) {
-        return true
-    } else {
-        return new Error('empty request')
-    }
+    return true
+  } else {
+    return new Error('empty request')
+  }
 }
 
-async function queryFriendsCollection(request){
-    const friend = await FriendsModel.findByIdAndUpdate()
+async function queryFriendsCollection (request) {
+  const friend = await FriendsModel.findByIdAndUpdate()
 }
+
+module.exports = acceptFriendRequest

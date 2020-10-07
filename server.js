@@ -1,46 +1,34 @@
-//importing
-import express from "express"
-import mongoose from 'mongoose'
-import cors from 'cors'
-import bodyParser from 'body-parser'
-import socket from 'socket.io'
-import http from 'http'
-import {socketHandler} from "./socket_handlers/socketHandler.js"
-import dotenv from "dotenv"
-import appRoutes from './routes.js'
+// importing
+const express = require('express')
+const socket = require('socket.io')
+const http = require('http')
+const socketHandler = require('./socket_handlers/socketHandler')
+const dotenv = require('dotenv')
+const appRoutes = require('./routes.js')
+const useMiddlewares = require('./appMiddlewares')
+const { setDbConfig, db } = require('./dbConfig')
 
 dotenv.config()
 
-const app  = express();
-const server = http.createServer(app);
+const app = express()
+const server = http.createServer(app)
 const io = socket(server)
 const port = process.env.PORT || 8001
 
-//middlewares
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({extended:false}))
-app.use(cors())
+// middlewares
+useMiddlewares(app, io)
+
 // DB
-mongoose.connect(process.env.DB_URL,{
-    useCreateIndex:true,
-    useNewUrlParser:true,
-    useUnifiedTopology:true,
-    useFindAndModify:false
+setDbConfig()
+
+// listen for server
+db.once('open', () => {
+  console.log('DB connected')
+  server.listen(port, () => console.log(`Listening on localhost:${port}`))
 })
 
-const db = mongoose.connection
-
-db.once('open', ()=>{
-    console.log('DB connected')   
-    server.listen(port, () => console.log(`Listening on localhost:${port}`))
-})
-
-//socket 
+// socket
 io.on('connection', socketHandler)
 
 // app routes
-appRoutes(app)
-
-
-
-
+appRoutes(app, io)
