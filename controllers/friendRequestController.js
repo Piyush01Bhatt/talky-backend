@@ -1,6 +1,7 @@
 const TalkyError = require('../utils/talkyError.js')
 const { checkFriendRequest, saveFriendRequest } = require('../helpers/friendRequestHelper.js')
 const FriendsModel = require('../models/dbFriends.js')
+const { UserModel } = require('../models/dbUser.js')
 
 // friend request route
 /**
@@ -12,7 +13,7 @@ async function friendRequestController (req, res) {
   try {
     checkFriendRequest(req)
     await saveFriendRequest(req)
-    const fromUser = await FriendsModel.findOne({ _id: req.body.fo_id })
+    const fromUser = await UserModel.findOne({ _id: req.body.fo_id })
     if (!fromUser) {
       throw new Error('cannot query user')
     }

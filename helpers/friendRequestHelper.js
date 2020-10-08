@@ -20,7 +20,7 @@ function checkFriendRequest (req) {
   }
 }
 
-async function saveFriendRequest(req) {
+async function saveFriendRequest (req) {
   try {
     const reqBody = req.body
     const friend = await FriendsModel.findOne({
