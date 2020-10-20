@@ -1,0 +1,8 @@
+NODE_ENV=development
+PORT=8001
+// Database api
+DB_URL  = "mongo db url"
+
+// Mail trap
+MT_USER = "XXXXXXXXXXXXXX"
+MT_PASSWORD = "XXXXXXXXXXXXXXX"
