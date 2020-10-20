@@ -1,14 +1,28 @@
 const FriendsModel = require('../models/dbFriends.js')
 const TalkyError = require('../utils/talkyError.js')
 
-// check friend request
 /**
-   * u_id : id of the person to whom friend request is sent
-   * name : name of the person to whom friend request is sent
-   * status: status of the person to whom friend request is sent
-   * fo_id : id of the person from whom friend request was sent
-*/
+  * friendRequestHelper module
+  * @category helpers
+  * @module friendRequestHelper
+  */
+
+/**
+ * Checks if the request body is as expected
+ * @function checkFriendRequest
+ * @param {Object} req - Http request object
+ * @returns {void}
+ * @throws {TalkyError} for missing request with error code
+ * @static
+ */
+
 function checkFriendRequest (req) {
+/**
+ * u_id : id of the person to whom friend request is sent
+ * name : name of the person to whom friend request is sent
+ * status: status of the person to whom friend request is sent
+ * fo_id : id of the person from whom friend request was sent
+ */
   const reqBody = req.body
   if (!(reqBody &&
     reqBody.u_id &&
@@ -19,6 +33,15 @@ function checkFriendRequest (req) {
     throw new TalkyError('missing request', 400)
   }
 }
+
+/**
+ * Saves the friend request to the database
+ * @function saveFriendRequest
+ * @param {Object} req - Http request object
+ * @returns {Object} the saved request object
+ * @throws {TalkyError} for any internal error
+ * @static
+ */
 
 async function saveFriendRequest (req) {
   try {

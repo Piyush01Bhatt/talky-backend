@@ -23,9 +23,9 @@ function socketHandler (socket) {
     console.log('sent the message')
   })
 
-  /*socket.on('accept-friend-request'), async (request) => {
+  /* socket.on('accept-friend-request'), async (request) => {
     acceptFriendRequest(request, socket)
-  }*/
+  } */
 }
 
 module.exports = socketHandler

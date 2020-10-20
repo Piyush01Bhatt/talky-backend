@@ -5,6 +5,22 @@ const sendMail = require('../utils/sendMail')
 const TalkyError = require('../utils/talkyError.js')
 const crypto = require('crypto')
 
+/**
+ * userRegisterController module
+ * @category controllers
+ * @module userRegisterController
+ */
+
+/**
+ * Allows user to get registered to the Talky App
+ * @function userRegisterController
+ * @param {Object} req - Http Request Object
+ * @param {Object} res - Http Response Object
+ * @returns {void}
+ * @throws {TalkyError} for missing request or any internal error with error code
+ * @static
+ */
+
 async function userRegisterController (req, res) {
   // route to create a temp data of user with otp
   try {

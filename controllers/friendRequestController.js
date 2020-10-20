@@ -3,10 +3,20 @@ const { checkFriendRequest, saveFriendRequest } = require('../helpers/friendRequ
 const FriendsModel = require('../models/dbFriends.js')
 const { UserModel } = require('../models/dbUser.js')
 
-// friend request route
 /**
- * @param req
- * @param res
+ * friendRequestController module
+ * @category controllers
+ * @module friendRequestController
+ */
+
+/**
+ * Saves the request and fires a request socket event
+ * @function friendRequestController
+ * @param {Object} req - Http Request Object
+ * @param {Object} res - Http Response Object
+ * @returns {void}
+ * @throws {TalkyError} for missing request or any internal error with error code
+ * @static
  */
 
 async function friendRequestController (req, res) {

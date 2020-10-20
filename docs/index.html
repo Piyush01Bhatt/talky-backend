@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title> Home</title>
+
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="./build/entry.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,400,700|Inconsolata,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+  <link type="text/css" rel="stylesheet" href="https://jmblog.github.io/color-themes-for-google-code-prettify/themes/tomorrow-night.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/app.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/iframe.css">
+  <link type="text/css" rel="stylesheet" href="">
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+  
+</head>
+
+
+
+<body class="layout small-header">
+    <div id="stickyNavbarOverlay"></div>
+    
+
+<div class="top-nav">
+    <div class="inner">
+        <a id="hamburger" role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+        <div class="logo">
+            
+            
+        </div>
+        <div class="menu">
+            
+            <div class="navigation">
+                <a
+                    href="index.html"
+                    class="link"
+                >
+                    API Documentation
+                </a>
+                
+                
+                
+            </div>
+        </div>
+    </div>
+</div>
+    <div id="main">
+        <div
+            class="sidebar "
+            id="sidebarNav"
+        >
+            
+            <nav>
+                
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"></div><div class="category"><h2>controllers</h2><h3>Modules</h3><ul><li><a href="module-friendRequestController.html">friendRequestController</a></li><li><a href="module-getUsersController.html">getUsersController</a></li><li><a href="module-loginController.html">loginController</a></li><li><a href="module-registerAuthController.html">registerAuthController</a></li><li><a href="module-userRegisterController.html">userRegisterController</a></li></ul></div><div class="category"><h2>helpers</h2><h3>Modules</h3><ul><li><a href="module-friendRequestHelper.html">friendRequestHelper</a></li><li><a href="module-getUsersHelper.html">getUsersHelper</a></li><li><a href="module-loginHelper.html">loginHelper</a></li><li><a href="module-registerAuthHelper.html">registerAuthHelper</a></li><li><a href="module-registerHelper.html">registerHelper</a></li></ul></div>
+                
+            </nav>
+        </div>
+        <div class="core" id="main-content-wrapper">
+            <div class="content">
+                <header class="page-title">
+                    <p></p>
+                    <h1>Home</h1>
+                </header>
+                
+
+
+
+    
+
+
+    <h3> </h3>
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+    <section>
+        <article><h2>Welcome to Talky</h2>
+<p>This is node.js based backend for react based chat application Talky.<br>
+See <a href="https://github.com/Piyush01Bhatt/Talky">Talky</a> for the react based web app Talky.</p>
+<h2>Features :</h2>
+<ul>
+<li>Login</li>
+<li>Register</li>
+<li>One to one chat</li>
+<li>Send and receive friend requests</li>
+</ul>
+<h2>How to run :</h2>
+<ol>
+<li>Create a .env file as shown in dummyenv and add it to root directory.</li>
+<li>Install node and mongodb</li>
+<li>Run <code>npm install</code></li>
+<li>Run command <code>node server.js</code></li>
+<li>Build the documentation using <code>npm run doc</code></li>
+</ol>
+<h2>Traversing Documentation</h2>
+<p>The starting file of the app is <strong>server.js</strong> that contains basic setup of the app which uses further configs of <strong>routes, middlewares and database</strong> from <strong>src</strong> directory.</p>
+<p>The app is further divided into following directories -:</p>
+<ol>
+<li><strong>controllers</strong> -: This contains the functions that control the api logic.</li>
+<li><strong>helpers</strong> -: This contains the helper functions for the controllers.</li>
+<li><strong>models</strong> -: This contains mongoose based schemas for the mongodb collection used in app.</li>
+<li><strong>middlewares</strong> -: This contains all the custom middleware functions.</li>
+<li><strong>routes</strong> -: This contains modules for express routers that use controllers.</li>
+<li><strong>utils</strong> -: All the utilities used in app are inside this directory.</li>
+<li><strong>docs</strong> -: The docs generated are inside this directory.</li>
+</ol>
+<p>Check the documentation to find further details of all modules, classes, functions and objects used to create the application.</p></article>
+    </section>
+
+
+
+
+
+
+            </div>
+            
+            <footer class="footer">
+                <div class="content has-text-centered">
+                    <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.6</a></p>
+                    <p class="sidebar-created-by">
+                        <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by 
+                        <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers - JavaScript Development Agency</a>
+                    </p>
+                </div>
+            </footer>
+            
+        </div>
+        <div id="side-nav" class="side-nav">
+        </div>
+    </div>
+<script src="scripts/app.min.js"></script>
+<script>PR.prettyPrint();</script>
+<script src="scripts/linenumber.js"> </script>
+
+</body>
+</html>

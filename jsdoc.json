@@ -1,0 +1,24 @@
+{
+    "source": {
+        "include":["src","controllers","middlewares","helpers","models","routes","utils"],
+        "includePattern":".js$",
+        "excludePatterns":"(node_modules/|docs)"
+    },
+    "sourceType": "module",
+    "tags": {
+        "allowUnknownTags": ["category"]
+    },
+    "plugins": ["plugins/markdown",
+        "node_modules/better-docs/category"],
+    "templates": {
+        "cleverLinks": true,
+        "collapse": true,
+        "monospaceLinks": true,
+        "showInheritedInNav": true
+    },
+    "opts": {
+        "recurse": true,
+        "destination":"./docs/",
+        "template": "node_modules/better-docs"
+    }
+}

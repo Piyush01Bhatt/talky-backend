@@ -1,5 +1,5 @@
-const userRouter = require('./routes/userRoute')
-const friendsRouter = require('./routes/friendsRoute')
+const userRouter = require('../routes/userRoute')
+const friendsRouter = require('../routes/friendsRoute')
 
 // api routes
 const appRoutes = (app, io) => {

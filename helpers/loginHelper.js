@@ -2,12 +2,36 @@ const crypto = require('crypto')
 const { UserModel } = require('../models/dbUser.js')
 const TalkyError = require('../utils/talkyError.js')
 
+/**
+  * loginHelper module
+  * @category helpers
+  * @module loginHelper
+  */
+
+/**
+ * Checks if the request body is as expected
+ * @function checkLoginRequest
+ * @param {Object} req - Http request object
+ * @returns {void}
+ * @throws {TalkyError} for missing request with error code
+ * @static
+ */
+
 function checkLoginRequest (req) {
   const reqBody = req.body
   if (!(reqBody && (reqBody.email && reqBody.password))) {
     throw new TalkyError('Missing Request', 400)
   }
 }
+
+/**
+ * Checks if the user exists in the database
+ * @function findUser
+ * @param {Object} req - Http request object
+ * @returns {Object} userData._doc - User data returned by the mongoose user model
+ * @throws {TalkyError} for no user or any internal error
+ * @static
+ */
 
 async function findUser (req) {
   try {
@@ -24,6 +48,16 @@ async function findUser (req) {
     throw new TalkyError(err.message, 500)
   }
 }
+
+/**
+ * Checks if the requested password matches with the stored password
+ * @function checkPassword
+ * @param {Object} dbUser - the returned user from mongoose user model
+ * @param {string} passwd - requested password
+ * @returns {Object} dbUser - User data returned by the mongoose model
+ * @throws {TalkyError} for password not matched or any internal error
+ * @static
+ */
 
 function checkPassword (dbUser, passwd) {
   try {

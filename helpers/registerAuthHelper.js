@@ -1,6 +1,21 @@
 const { TempUserModel, UserModel } = require('../models/dbUser.js')
 const TalkyError = require('../utils/talkyError.js')
 
+/**
+  * registerAuthHelper module
+  * @category helpers
+  * @module registerAuthHelper
+  */
+
+/**
+ * Checks if the request body is as expected
+ * @function checkRegisterAuthRequest
+ * @param {Object} req - Http request object
+ * @returns {void}
+ * @throws {TalkyError} for missing request with error code
+ * @static
+ */
+
 function checkRegisterAuthRequest (req) {
   const reqBody = req.body
   if (!(
@@ -11,6 +26,15 @@ function checkRegisterAuthRequest (req) {
     throw new TalkyError('missing request', 400)
   }
 }
+
+/**
+ * Checks the database for if user already exists
+ * @function findUser
+ * @param {Object} req - Http request object
+ * @returns {void}
+ * @throws {TalkyError} if user already exists or any internal error
+ * @static
+ */
 
 async function findUser (req) {
   try {
@@ -25,6 +49,15 @@ async function findUser (req) {
     throw new TalkyError(err.message, 500)
   }
 }
+
+/**
+ * Finds user stored as unregistered for authorisation
+ * @function findTempUser
+ * @param {Object} reqBody - Body of http request
+ * @returns {Object} info of unregistered user
+ * @throws {TalkyError} if no unreqistered user exists or any internal error
+ * @static
+ */
 
 async function findTempUser (reqBody) {
   try {
@@ -42,6 +75,16 @@ async function findTempUser (reqBody) {
     throw new TalkyError(err.message, 500)
   }
 }
+
+/**
+ * Verifies otp
+ * @function verifyOtp
+ * @param {string} dbOtp - Otp stored in database
+ * @param {string} reqOtp - Otp requested
+ * @returns {void}
+ * @throws {TalkyError} if otp not matches
+ * @static
+ */
 
 function verifyOtp (dbOtp, reqOtp) {
   if (!(dbOtp === reqOtp)) {

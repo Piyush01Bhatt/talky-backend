@@ -2,6 +2,22 @@ const { checkRegisterAuthRequest, findUser, findTempUser, verifyOtp } = require(
 const { UserModel } = require('../models/dbUser.js')
 const TalkyError = require('../utils/talkyError.js')
 
+/**
+ * registerAuthController module
+ * @category controllers
+ * @module registerAuthController
+ */
+
+/**
+ * Authorises user registration by verifying the generated otp
+ * @function registerAuthController
+ * @param {Object} req - Http Request Object
+ * @param {Object} res - Http Response Object
+ * @returns {void}
+ * @throws {TalkyError} for missing request or any internal error with error code
+ * @static
+ */
+
 async function registerAuthController (req, res) {
   try {
     checkRegisterAuthRequest(req)

@@ -4,9 +4,13 @@ const socket = require('socket.io')
 const http = require('http')
 const socketHandler = require('./socket_handlers/socketHandler')
 const dotenv = require('dotenv')
-const appRoutes = require('./routes.js')
-const useMiddlewares = require('./appMiddlewares')
-const { setDbConfig, db } = require('./dbConfig')
+const appRoutes = require('./src/routes.js')
+const useMiddlewares = require('../appMiddlewares')
+const { setDbConfig, db } = require('./src/dbConfig')
+
+/**
+ * @author Piyush Bhatt
+ */
 
 dotenv.config()
 
