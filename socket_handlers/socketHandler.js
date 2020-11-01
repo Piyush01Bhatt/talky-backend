@@ -1,4 +1,3 @@
-const acceptFriendRequest = require('./acceptReqEventHandler')
 
 function socketHandler (socket) {
   const id = socket.handshake.query.id
@@ -22,10 +21,6 @@ function socketHandler (socket) {
     })
     console.log('sent the message')
   })
-
-  /* socket.on('accept-friend-request'), async (request) => {
-    acceptFriendRequest(request, socket)
-  } */
 }
 
 module.exports = socketHandler

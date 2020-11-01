@@ -1,6 +1,5 @@
 const TalkyError = require('../utils/talkyError.js')
 const { checkFriendRequest, saveFriendRequest } = require('../helpers/friendRequestHelper.js')
-const FriendsModel = require('../models/dbFriends.js')
 const { UserModel } = require('../models/dbUser.js')
 
 /**
@@ -27,6 +26,7 @@ async function friendRequestController (req, res) {
     if (!fromUser) {
       throw new Error('cannot query user')
     }
+    /** emit request event */
     res.io.to(req.body.u_id).emit('received-friend-request', {
       message: 'received request',
       from: fromUser.name,
