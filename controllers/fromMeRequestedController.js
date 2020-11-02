@@ -18,10 +18,10 @@ const { checkRequest, getFromMeRequestedFriends } = require('../helpers/fromMeRe
 async function fromMeRequestedController (req, res) {
   try {
     checkRequest(req)
-    const num = parseInt(req.params.num)
     const uId = req.params.id
-    const page = req.params.page
-    const friends = await getFromMeRequestedFriends(uId, num, page)
+    const currPage = req.params.curr_page
+    const prevPage = req.params.prev_page
+    const friends = await getFromMeRequestedFriends(uId, currPage, prevPage)
     res.negotiate({
       status: 200,
       body: {

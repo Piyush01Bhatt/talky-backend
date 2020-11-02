@@ -4,7 +4,7 @@ const TalkyError = require('../utils/talkyError.js')
 /**
  * Helper module for fromMeRequestedController
  * @category helpers
- * @module fromMeRequestedHelper
+ * @module toMeRequestedHelper
  */
 
 /**
@@ -26,7 +26,7 @@ function checkRequest (req) {
 }
 
 /**
- * gets the accepted requests sent by the user
+ * gets the accepted requests sent to the user
  * @param {string} uId - user id
  * @param {number} currPage - current page size
  * @param {number} prevPage - previous page size
@@ -35,11 +35,11 @@ function checkRequest (req) {
  * @static
  */
 
-async function getFromMeRequestedFriends (uId, currPage, prevPage) {
+async function getToMeRequestedFriends (uId, currPage, prevPage) {
   try {
     const PAGE_SIZE = currPage
     const skip = prevPage
-    const friends = await FriendsModel.find({ fo_id: uId, accepted: true })
+    const friends = await FriendsModel.find({ u_id: uId, accepted: true })
       .skip(skip)
       .limit(PAGE_SIZE)
       .sort({date: -1})
@@ -54,5 +54,5 @@ async function getFromMeRequestedFriends (uId, currPage, prevPage) {
 
 module.exports = {
   checkRequest,
-  getFromMeRequestedFriends
+  getToMeRequestedFriends
 }

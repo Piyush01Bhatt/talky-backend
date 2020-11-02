@@ -2,6 +2,7 @@ const express = require('express')
 const friendRequestController = require('../controllers/friendRequestController')
 const acceptFriendRequestController = require('../controllers/acceptFriendRequestController')
 const fromMeRequestedController = require('../controllers/fromMeRequestedController')
+const toMeRequestedController = require('../controllers/toMeRequestedController')
 
 const friendsRouter = express.Router()
 
@@ -12,6 +13,9 @@ friendsRouter.post('/friend_request', friendRequestController)
 friendsRouter.post('/accept_request', acceptFriendRequestController)
 
 /** get from me requested friends */
-friendsRouter.get('/from_me_requested/:id/:num/:page', fromMeRequestedController)
+friendsRouter.get('/from_me_requested/:id/:curr_page/:prev_page', fromMeRequestedController)
+
+/** get to me requested friends */
+friendsRouter.get('/to_me_requested/:id/:curr_page/:prev_page', toMeRequestedController)
 
 module.exports = friendsRouter
