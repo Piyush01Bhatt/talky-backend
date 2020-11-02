@@ -42,7 +42,7 @@ async function getFromMeRequestedFriends (uId, currPage, prevPage) {
     const friends = await FriendsModel.find({ fo_id: uId, accepted: true })
       .skip(skip)
       .limit(PAGE_SIZE)
-      .sort({date: -1})
+      .sort({ date: -1 })
     return friends
   } catch (err) {
     if (err instanceof TalkyError) {

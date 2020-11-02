@@ -14,6 +14,14 @@ async function toMeRequestedController (req, res) {
     const currPage = req.params.curr_page
     const prevPage = req.params.prev_page
     const friends = await getToMeRequestedFriends(uId, currPage, prevPage)
+    res.negotiate({
+      status: 200,
+      body: {
+        success: true,
+        message: 'gotcha! your friends',
+        data: friends
+      }
+    })
   } catch (err) {
     if (err instanceof TalkyError) {
       return res.negotiate(null, err)
