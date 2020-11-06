@@ -1,6 +1,6 @@
 const cors = require('cors')
 const bodyParser = require('body-parser')
-const negotiate = require('./middlewares/negotiateResponse')
+const negotiate = require('../middlewares/negotiateResponse')
 
 const useMiddlewares = (app, io) => {
   /** set negotiate method to response */

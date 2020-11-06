@@ -40,7 +40,7 @@ async function findUser (req) {
   try {
     const dbUser = await UserModel.findOne({ email: req.email }).exec()
     if (dbUser) {
-      throw new TalkyError('User already exists', 200)
+      throw new TalkyError('User already exists', 400)
     }
   } catch (err) {
     if (err instanceof TalkyError) {
@@ -65,7 +65,7 @@ async function findTempUser (reqBody) {
       email: reqBody.email
     }).exec()
     if (!dbData) {
-      throw new TalkyError('not registered', 200)
+      throw new TalkyError('not registered', 400)
     }
     return dbData._doc
   } catch (err) {
@@ -88,7 +88,7 @@ async function findTempUser (reqBody) {
 
 function verifyOtp (dbOtp, reqOtp) {
   if (!(dbOtp === reqOtp)) {
-    throw new TalkyError('wrong otp', 200)
+    throw new TalkyError('wrong otp', 400)
   }
 }
 

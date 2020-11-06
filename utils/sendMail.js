@@ -1,6 +1,7 @@
 const nodemailer = require('nodemailer')
+const TalkyError = require('./talkyError')
 
-function sendMail (emailId, subj, txt) {
+async function sendMail (emailId, subj, txt) {
   const transporter = nodemailer.createTransport({
     host: 'smtp.mailtrap.io',
     port: 2525,
@@ -16,14 +17,12 @@ function sendMail (emailId, subj, txt) {
     subject: subj,
     text: txt
   }
-
-  transporter.sendMail(mailOptions, (error, info) => {
-    if (error) {
-      console.log(error)
-    } else {
-      console.log('Email sent: ' + info.response)
-    }
-  })
+  try {
+    const info = await transporter.sendMail(mailOptions)
+    console.log('MessageSent: %s', info.messageId)
+  } catch (err) {
+    throw new TalkyError(err.message, 500)
+  }
 }
 
 module.exports = sendMail

@@ -13,7 +13,7 @@ async function toMeRequestedController (req, res) {
     const uId = req.params.id
     const currPage = req.params.curr_page
     const prevPage = req.params.prev_page
-    const friends = await getToMeRequestedFriends(uId, currPage, prevPage)
+    const friends = await getToMeRequestedFriends(uId, parseInt(currPage), parseInt(prevPage))
     res.negotiate({
       status: 200,
       body: {

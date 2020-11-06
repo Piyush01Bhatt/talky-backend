@@ -39,12 +39,12 @@ async function userRegisterController (req, res) {
     if (!tempUser) {
       throw new TalkyError('error creating user', 500)
     }
-    sendMail(tempUser.email, 'verification otp', tempUser.otp)
+    await sendMail(tempUser.email, 'verification otp', tempUser.otp)
     return res.negotiate({
       status: 201,
       body: {
         success: true,
-        message: 'Created'
+        message: 'Otp created and sent'
       }
     })
   } catch (err) {

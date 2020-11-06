@@ -4,18 +4,14 @@ function negotiate (data, err = null) {
   if (data) {
     this.status(data.status)
     this.send({
-      body: {
-        success: true,
-        ...data.body
-      }
+      success: true,
+      ...data.body
     })
   } else if (err instanceof TalkyError) {
     this.status(err.status)
     this.send({
-      body: {
-        success: false,
-        message: err.message
-      }
+      success: false,
+      message: err.message
     })
   } else {
     this.status(500)

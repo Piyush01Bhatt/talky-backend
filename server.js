@@ -5,7 +5,7 @@ const http = require('http')
 const socketHandler = require('./socket_handlers/socketHandler')
 const dotenv = require('dotenv')
 const appRoutes = require('./src/routes.js')
-const useMiddlewares = require('../appMiddlewares')
+const useMiddlewares = require('./src/appMiddlewares')
 const { setDbConfig, db } = require('./src/dbConfig')
 
 /**

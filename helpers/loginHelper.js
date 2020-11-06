@@ -38,7 +38,7 @@ async function findUser (req) {
     const reqBody = req.body
     const userData = await UserModel.findOne({ email: reqBody.email }).exec()
     if (!userData) {
-      throw new TalkyError('No user found', 512)
+      throw new TalkyError('No user found', 400)
     }
     return userData._doc
   } catch (err) {
@@ -70,7 +70,7 @@ function checkPassword (dbUser, passwd) {
       console.log('password matched')
       return dbUser
     } else {
-      throw new TalkyError('Password not Matched', 512)
+      throw new TalkyError('Password not Matched', 400)
     }
   } catch (err) {
     if (err instanceof TalkyError) {

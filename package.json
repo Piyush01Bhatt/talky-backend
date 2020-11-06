@@ -4,8 +4,11 @@
   "description": "chat application",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest --detectOpenHandles tests",
     "doc": "jsdoc -c jsdoc.json server.js -R ./README.md"
+  },
+  "jest": {
+    "testEnvironment": "node"
   },
   "author": "Piyush Bhatt",
   "license": "ISC",
@@ -20,14 +23,17 @@
     "socket.io": "^2.3.0"
   },
   "devDependencies": {
+    "axios": "^0.21.0",
     "better-docs": "^2.3.2",
     "eslint": "^7.10.0",
     "eslint-config-standard": "^14.1.1",
     "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jest": "^24.1.0",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.1",
     "jest": "^26.4.2",
-    "jsdoc": "^3.6.6"
+    "jsdoc": "^3.6.6",
+    "supertest": "^6.0.0"
   }
 }

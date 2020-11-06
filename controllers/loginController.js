@@ -20,7 +20,7 @@ async function loginController (req, res) {
   try {
     checkLoginRequest(req)
     const userData = await findUser(req)
-    const { password, ...resolvedUser } = checkPassword(userData, req.body.password)
+    const { password, __v, ...resolvedUser } = checkPassword(userData, req.body.password)
     return res.negotiate({
       status: 200,
       body: {

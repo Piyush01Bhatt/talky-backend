@@ -19,9 +19,13 @@ function checkRequest (req) {
   const id = req.params.id
   const currPage = req.params.curr_page
   const prevPage = req.params.prev_page
-  if (!(id && currPage && prevPage &&
-    parseInt(currPage) && parseInt(prevPage))) {
-    throw new TalkyError('missing num', 400)
+  const num = parseInt(currPage)
+  const prevNum = parseInt(prevPage)
+  if (!(id && currPage && prevPage)) {
+    throw new TalkyError('missing request', 400)
+  }
+  if (Number.isNaN(num) || Number.isNaN(prevNum)) {
+    throw new TalkyError('pages should be int', 400)
   }
 }
 
@@ -42,7 +46,7 @@ async function getToMeRequestedFriends (uId, currPage, prevPage) {
     const friends = await FriendsModel.find({ u_id: uId, accepted: true })
       .skip(skip)
       .limit(PAGE_SIZE)
-      .sort({date: -1})
+      .sort({name: 1})
     return friends
   } catch (err) {
     if (err instanceof TalkyError) {

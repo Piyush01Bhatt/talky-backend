@@ -1,7 +1,8 @@
 module.exports = {
   env: {
     browser: true,
-    es2021: true
+    es2021: true,
+    jest: true
   },
   extends: [
     'standard'
@@ -10,6 +11,7 @@ module.exports = {
     ecmaVersion: 12,
     sourceType: 'module'
   },
+  plugins: ['jest'],
   rules: {
   }
 }
