@@ -26,7 +26,7 @@ afterAll((done) => {
 test('Should return from me friends', async () => {
   // request 1
   const response = await request(app)
-    .get('/friends/from_me_requested/5f6b42673ffbaf4af3827907/4/0')
+    .get('/friends/from_me_requested/5f6b42673ffbaf4af3827907/1/4')
     .send()
   // assert for response code
   expect(response.statusCode).toBe(200)
@@ -36,22 +36,22 @@ test('Should return from me friends', async () => {
 
   // request 2
   const response2 = await request(app)
-    .get('/friends/from_me_requested/5f6b42673ffbaf4af3827907/5/4')
+    .get('/friends/from_me_requested/5f6b42673ffbaf4af3827907/2/4')
     .send()
     // assert for response code
   expect(response2.statusCode).toBe(200)
   // assert for response body
   expect(response2.body.success).toBe(true)
-  expect(response2.body.data.length).toBe(5)
+  expect(response2.body.data.length).toBe(4)
 
   // request 3
   const response3 = await request(app)
-    .get('/friends/from_me_requested/5f6b42673ffbaf4af3827907/3/9')
+    .get('/friends/from_me_requested/5f6b42673ffbaf4af3827907/3/4')
     .send()
     // assert for response code
   expect(response3.statusCode).toBe(200)
   // assert for response3 body
   expect(response3.body.success).toBe(true)
-  expect(response3.body.data.length).toBe(1)
+  expect(response3.body.data.length).toBe(2)
   console.log(response3.body.data)
 })

@@ -24,7 +24,7 @@ async function friendRequestController (req, res) {
     await saveFriendRequest(req)
     const fromUser = await UserModel.findOne({ _id: req.body.fo_id })
     if (!fromUser) {
-      throw new Error('cannot query user')
+      throw new TalkyError('cannot query user', 500)
     }
     /** emit request event */
     res.io.to(req.body.u_id).emit('received-friend-request', {

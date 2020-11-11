@@ -21,14 +21,12 @@ async function getUsersController (req, res) {
   try {
     checkGetUsersRequest(req)
     const dbUsers = await queryDb(req)
-    const lastId = dbUsers[dbUsers.length - 1]._id
-    const newDbUsers = await getFriendRequestInfo(dbUsers, req.body.u_id)
+    const newDbUsers = await getFriendRequestInfo(dbUsers, req.params.id)
     res.negotiate({
       status: 200,
       body: {
         success: true,
         data: newDbUsers,
-        last_id: lastId,
         message: 'found users'
       }
     })

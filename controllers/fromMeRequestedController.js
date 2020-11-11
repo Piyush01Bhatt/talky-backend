@@ -19,9 +19,9 @@ async function fromMeRequestedController (req, res) {
   try {
     checkRequest(req)
     const uId = req.params.id
-    const currPage = req.params.curr_page
-    const prevPage = req.params.prev_page
-    const friends = await getFromMeRequestedFriends(uId, parseInt(currPage), parseInt(prevPage))
+    const page = req.params.page
+    const limit = req.params.limit
+    const friends = await getFromMeRequestedFriends(uId, parseInt(page), parseInt(limit))
     res.negotiate({
       status: 200,
       body: {

@@ -13,9 +13,9 @@ friendsRouter.post('/friend_request', friendRequestController)
 friendsRouter.post('/accept_request', acceptFriendRequestController)
 
 /** get from me requested friends */
-friendsRouter.get('/from_me_requested/:id/:curr_page/:prev_page', fromMeRequestedController)
+friendsRouter.get('/from_me_requested/:id/:page/:limit', fromMeRequestedController)
 
 /** get to me requested friends */
-friendsRouter.get('/to_me_requested/:id/:curr_page/:prev_page', toMeRequestedController)
+friendsRouter.get('/to_me_requested/:id/:page/:limit', toMeRequestedController)
 
 module.exports = friendsRouter

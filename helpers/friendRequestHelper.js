@@ -51,7 +51,7 @@ async function saveFriendRequest (req) {
       fo_id: reqBody.fo_id
     }).exec()
     if (friend) {
-      throw new TalkyError('already requested', 200)
+      throw new TalkyError('already requested', 400)
     }
     const newFriend = await FriendsModel.create({
       name: reqBody.name,

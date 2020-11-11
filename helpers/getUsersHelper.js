@@ -18,15 +18,20 @@ const TalkyError = require('../utils/talkyError.js')
  */
 
 function checkGetUsersRequest (req) {
-  const reqBody = req.body
-  console.log(reqBody)
-  if (!(reqBody &&
-    (reqBody.queryName &&
-      reqBody.last_id &&
-      reqBody.u_id &&
-      reqBody.num))
+  const id = req.params.id
+  const page = req.params.page
+  const limit = req.params.limit
+  const name = req.params.name
+  if (!(id &&
+        page &&
+        limit &&
+        name)
   ) {
     throw new TalkyError('missing request', 400)
+  }
+
+  if (!(parseInt(page) && parseInt(limit))) {
+    throw new TalkyError('page and limit should be a valid integer', 400)
   }
 }
 
@@ -41,13 +46,17 @@ function checkGetUsersRequest (req) {
 
 async function queryDb (req) {
   try {
-    const reqBody = req.body
-    let dbUsers
-    if (reqBody.last_id === 'fake') {
-      dbUsers = await UserModel.find({ name: reqBody.queryName }, { password: 0 }, { limit: reqBody.num }).exec()
-    } else {
-      dbUsers = await UserModel.find({ name: reqBody.queryName, _id: { $gt: reqBody.last_id } }, { password: 0 }, { limit: reqBody.num }).exec()
-    }
+    const PAGE_SIZE = parseInt(req.params.page)
+    const limit = parseInt(req.params.limit)
+    const skip = (PAGE_SIZE - 1) * limit
+    const regStr = '^' + req.params.name
+    const regex = new RegExp(regStr)
+    const dbUsers = await UserModel.find({ name: regex })
+      .select({ password: 0 })
+      .skip(skip)
+      .limit(limit)
+      .sort({ name: 1 })
+      .exec()
     if (!dbUsers) {
       throw new TalkyError("can't query db", 500)
     }
@@ -75,27 +84,15 @@ async function queryDb (req) {
 
 async function getFriendRequestInfo (dbUsers, uId) {
   try {
-    console.log(dbUsers.length)
     for (let i = 0; i < dbUsers.length; i++) {
       const user = dbUsers[i]
       // check if already send a friend request
       const friend = await FriendsModel.findOne({ u_id: user._id, fo_id: uId }).exec()
       if (!friend) {
-        console.log('not requested')
-        /* const pair = {
-          received: false,
-          requested: false,
-          accepted: false
-        }
-        // dbUsers[i]["requested"] = false;
-        // dbUsers[i]["accepted"]  = false;
-        dbUsers[i] = { ...dbUsers[i]._doc, ...pair } */
-
         // check if received a request
         const pair = await checkIfReceivedRequest(user, uId)
         dbUsers[i] = { ...dbUsers[i]._doc, ...pair }
       } else {
-        console.log('already requested')
         const pair = {
           received: false,
           requested: true,

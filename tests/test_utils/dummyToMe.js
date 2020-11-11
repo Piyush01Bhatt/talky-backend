@@ -4,7 +4,7 @@ const dummyToMe = [
   {
     __id: mongoose.Types.ObjectId(),
     accepted: true,
-    name: 'Saharsh',
+    name: 'Piyush',
     status: 'Hey I am using talky',
     fo_id: mongoose.Types.ObjectId(),
     u_id: '5f6b42673ffbaf4af3827907'
@@ -12,7 +12,7 @@ const dummyToMe = [
   {
     __id: mongoose.Types.ObjectId(),
     accepted: true,
-    name: 'Pawan',
+    name: 'Piyush',
     status: 'Hey I am using talky',
     fo_id: mongoose.Types.ObjectId(),
     u_id: '5f6b42673ffbaf4af3827907'
@@ -20,7 +20,7 @@ const dummyToMe = [
   {
     __id: mongoose.Types.ObjectId(),
     accepted: true,
-    name: 'Anil',
+    name: 'Piyush',
     status: 'Hey I am using talky',
     fo_id: mongoose.Types.ObjectId(),
     u_id: '5f6b42673ffbaf4af3827907'
@@ -28,7 +28,7 @@ const dummyToMe = [
   {
     __id: mongoose.Types.ObjectId(),
     accepted: true,
-    name: 'Udit',
+    name: 'Piyush',
     status: 'Hey I am using talky',
     fo_id: mongoose.Types.ObjectId(),
     u_id: '5f6b42673ffbaf4af3827907'
@@ -36,7 +36,7 @@ const dummyToMe = [
   {
     __id: mongoose.Types.ObjectId(),
     accepted: true,
-    name: 'Vivek',
+    name: 'Piyush',
     status: 'Hey I am using talky',
     fo_id: mongoose.Types.ObjectId(),
     u_id: '5f6b42673ffbaf4af3827907'
@@ -44,7 +44,7 @@ const dummyToMe = [
   {
     __id: mongoose.Types.ObjectId(),
     accepted: true,
-    name: 'Vaibhav',
+    name: 'Piyush',
     status: 'Hey I am using talky',
     fo_id: mongoose.Types.ObjectId(),
     u_id: '5f6b42673ffbaf4af3827907'
@@ -52,7 +52,7 @@ const dummyToMe = [
   {
     __id: mongoose.Types.ObjectId(),
     accepted: true,
-    name: 'Arvind',
+    name: 'Piyush',
     status: 'Hey I am using talky',
     fo_id: mongoose.Types.ObjectId(),
     u_id: '5f6b42673ffbaf4af3827907'
@@ -60,7 +60,7 @@ const dummyToMe = [
   {
     __id: mongoose.Types.ObjectId(),
     accepted: true,
-    name: 'Ayush',
+    name: 'Piyush',
     status: 'Hey I am using talky',
     fo_id: mongoose.Types.ObjectId(),
     u_id: '5f6b42673ffbaf4af3827907'
@@ -68,7 +68,7 @@ const dummyToMe = [
   {
     __id: mongoose.Types.ObjectId(),
     accepted: true,
-    name: 'Ishaan',
+    name: 'Piyush',
     status: 'Hey I am using talky',
     fo_id: mongoose.Types.ObjectId(),
     u_id: '5f6b42673ffbaf4af3827907'
@@ -76,7 +76,7 @@ const dummyToMe = [
   {
     __id: mongoose.Types.ObjectId(),
     accepted: true,
-    name: 'Dangwal',
+    name: 'Piyush',
     status: 'Hey I am using talky',
     fo_id: mongoose.Types.ObjectId(),
     u_id: '5f6b42673ffbaf4af3827907'

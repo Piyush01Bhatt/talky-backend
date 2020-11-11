@@ -16,7 +16,7 @@ userRouter.post('/auth', registerAuthController)
 userRouter.post('/login', loginController)
 
 /** get_users route */
-userRouter.post('/get_users', getUsersController)
+userRouter.get('/get_users/:id/:name/:page/:limit', getUsersController)
 
 /** export user router */
 module.exports = userRouter

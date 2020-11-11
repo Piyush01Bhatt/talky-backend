@@ -17,15 +17,13 @@ const TalkyError = require('../utils/talkyError.js')
 
 function checkRequest (req) {
   const id = req.params.id
-  const currPage = req.params.curr_page
-  const prevPage = req.params.prev_page
-  const num = parseInt(currPage)
-  const prevNum = parseInt(prevPage)
-  if (!(id && currPage && prevPage)) {
+  const page = req.params.page
+  const limit = req.params.limit
+  if (!(id && page && limit)) {
     throw new TalkyError('missing request', 400)
   }
-  if (Number.isNaN(num) || Number.isNaN(prevNum)) {
-    throw new TalkyError('pages should be int', 400)
+  if (!(parseInt(page) && parseInt(limit))) {
+    throw new TalkyError('pages and limit should be int', 400)
   }
 }
 
@@ -39,13 +37,13 @@ function checkRequest (req) {
  * @static
  */
 
-async function getFromMeRequestedFriends (uId, currPage, prevPage) {
+async function getFromMeRequestedFriends (uId, page, limit) {
   try {
-    const PAGE_SIZE = currPage
-    const skip = prevPage
+    const PAGE_NUM = page
+    const skip = (PAGE_NUM - 1) * limit
     const friends = await FriendsModel.find({ fo_id: uId, accepted: true })
       .skip(skip)
-      .limit(PAGE_SIZE)
+      .limit(limit)
       .sort({ name: 1 })
     return friends
   } catch (err) {
