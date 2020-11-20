@@ -1,5 +1,5 @@
 const request = require('supertest')
-const app = require('../test_utils/testApp')
+const { app } = require('../test_utils/testApp')
 const mongoose = require('mongoose')
 const FriendsModel = require('../../models/dbFriends')
 const dummyFromMe = require('../test_utils/dummyFromMe')
@@ -53,5 +53,4 @@ test('Should return from me friends', async () => {
   // assert for response3 body
   expect(response3.body.success).toBe(true)
   expect(response3.body.data.length).toBe(2)
-  console.log(response3.body.data)
 })

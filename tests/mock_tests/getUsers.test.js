@@ -1,5 +1,5 @@
 const request = require('supertest')
-const app = require('../test_utils/testApp')
+const { app } = require('../test_utils/testApp')
 const mongoose = require('mongoose')
 const FriendsModel = require('../../models/dbFriends')
 const { UserModel } = require('../../models/dbUser')
@@ -127,7 +127,6 @@ test('get user named kinnu for pagination', async () => {
     .send()
   expect(response.statusCode).toBe(200)
   expect(response.body.data.length).toBe(3)
-  console.log(response.body.data)
   // request 2 ... page 2
   const response2 = await request(app)
     .get('/user/get_users/5f6b42673ffbaf4af3827907/kinnu/2/3')
@@ -138,5 +137,4 @@ test('get user named kinnu for pagination', async () => {
     .get('/user/get_users/5f6b42673ffbaf4af3827907/kinnu/1/3')
     .send()
   expect(response3.statusCode).toBe(200)
-  console.log(response3.body.data)
 })

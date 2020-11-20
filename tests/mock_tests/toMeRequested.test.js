@@ -1,5 +1,5 @@
 const request = require('supertest')
-const app = require('../test_utils/testApp')
+const { app } = require('../test_utils/testApp')
 const mongoose = require('mongoose')
 const FriendsModel = require('../../models/dbFriends')
 const dummyToMe = require('../test_utils/dummyToMe')

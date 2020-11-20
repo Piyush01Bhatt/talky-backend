@@ -18,8 +18,8 @@ const TalkyError = require('../utils/talkyError.js')
 function checkRequest (req) {
   const reqBody = req.body
   if (!(reqBody &&
-    reqBody.of_id &&
-    reqBody.from_id
+    reqBody.userId &&
+    reqBody.friendId
   )
   ) {
     throw new TalkyError('missing request', 400)
@@ -38,8 +38,8 @@ async function acceptRequest (req) {
   try {
     const reqBody = req.body
     const friend = await FriendsModel.findOneAndUpdate({
-      u_id: reqBody.from_id,
-      fo_id: reqBody.of_id
+      u_id: reqBody.userId,
+      fo_id: reqBody.friendId
     }, {
       accepted: true
     }, {

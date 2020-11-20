@@ -29,4 +29,7 @@ io.on('connection', socketHandler)
 // app routes
 appRoutes(app, io)
 
-module.exports = app
+module.exports = {
+  app,
+  server
+}
