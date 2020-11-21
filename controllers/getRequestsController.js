@@ -1,5 +1,5 @@
 const TalkyError = require('../utils/talkyError')
-const { checkRequest, getRequests } = require('../helpers/getRequestsHelper')
+const { checkRequest, getRequests, addSentUserInfo } = require('../helpers/getRequestsHelper')
 
 async function getRequestsController (req, res) {
   try {
@@ -8,6 +8,7 @@ async function getRequestsController (req, res) {
     const page = req.params.page
     const limit = req.params.limit
     const friends = await getRequests(uId, parseInt(page), parseInt(limit))
+    await addSentUserInfo(friends)
     res.negotiate({
       status: 200,
       body: {

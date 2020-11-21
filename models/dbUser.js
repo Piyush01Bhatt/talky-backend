@@ -13,7 +13,7 @@ const talkyTempUserSchema = mongoose.Schema({
   password: { type: String, required: true },
   email: { type: String, required: true },
   otp: { type: String, required: true },
-  createdAt: { type: Date, expires: 600, default: Date.now() }
+  createdAt: { type: Date, expires: 900, default: Date.now() }
 })
 
 const TempUserModel = mongoose.model('tempusers', talkyTempUserSchema)

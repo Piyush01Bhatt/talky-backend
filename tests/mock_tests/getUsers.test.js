@@ -5,10 +5,6 @@ const FriendsModel = require('../../models/dbFriends')
 const { UserModel } = require('../../models/dbUser')
 const { dummyUsers, dummyToMe, dummyFromMe } = require('../test_utils/dummyUsers')
 
-/**
-  * @todo get users with name kinnu for pagination
- */
-
 beforeAll(async () => {
   mongoose.connect('mongodb://127.0.0.1:27017/talky', {
     useCreateIndex: true,
