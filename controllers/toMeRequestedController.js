@@ -1,5 +1,5 @@
 const TalkyError = require('../utils/talkyError')
-const { checkRequest, getToMeRequestedFriends } = require('../helpers/toMeRequestedHelper')
+const { checkRequest, getToMeRequestedFriends, addSentUserInfo } = require('../helpers/toMeRequestedHelper')
 
 /**
  * controller to get the friends from whom request was received and accepted
@@ -14,6 +14,7 @@ async function toMeRequestedController (req, res) {
     const page = req.params.page
     const limit = req.params.limit
     const friends = await getToMeRequestedFriends(uId, parseInt(page), parseInt(limit))
+    await addSentUserInfo(friends)
     res.negotiate({
       status: 200,
       body: {

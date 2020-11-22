@@ -1,5 +1,6 @@
 const FriendsModel = require('../models/dbFriends.js')
 const TalkyError = require('../utils/talkyError.js')
+const { UserModel } = require('../models/dbUser.js')
 
 /**
  * Helper module for fromMeRequestedController
@@ -54,7 +55,30 @@ async function getToMeRequestedFriends (uId, page, limit) {
   }
 }
 
+async function addSentUserInfo (friends) {
+  try {
+    for (let i = 0; i < friends.length; i++) {
+      const foId = friends[i].fo_id
+      const sentUser = await UserModel.findOne({ _id: foId }).exec()
+      const sentUserInfo = {
+        sentUserName: sentUser.name,
+        sentUserStatus: sentUser.status
+      }
+      friends[i] = {
+        ...friends[i]._doc,
+        ...sentUserInfo
+      }
+    }
+  } catch (err) {
+    if (err instanceof TalkyError) {
+      throw err
+    }
+    throw new TalkyError(err.message, 500)
+  }
+}
+
 module.exports = {
   checkRequest,
-  getToMeRequestedFriends
+  getToMeRequestedFriends,
+  addSentUserInfo
 }
