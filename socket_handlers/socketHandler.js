@@ -17,7 +17,8 @@ function socketHandler (socket) {
       to_name: message.to_name,
       to_id: message.to_id,
       from_id: message.from_id,
-      message: message.msg
+      message: message.msg,
+      timestamp: message.timestamp
     })
     console.log('sent the message')
   })

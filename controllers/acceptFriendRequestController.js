@@ -1,5 +1,5 @@
 const TalkyError = require('../utils/talkyError.js')
-const { checkRequest, acceptRequest } = require('../helpers/acceptFriendRequestHelper.js')
+const { checkRequest, acceptRequest, addToFriendList } = require('../helpers/acceptFriendRequestHelper.js')
 
 /**
  * acceptFriendRequestController module
@@ -20,12 +20,12 @@ async function acceptFriendRequestController (req, res) {
   try {
     checkRequest(req)
     const friend = await acceptRequest(req)
+    await addToFriendList(friend)
     res.negotiate({
       status: 201,
       body: {
         success: true,
-        message: 'request accepted successfully',
-        ...friend
+        message: 'request accepted successfully'
       }
     })
   } catch (err) {

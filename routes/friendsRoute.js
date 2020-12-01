@@ -1,25 +1,21 @@
 const express = require('express')
 const friendRequestController = require('../controllers/friendRequestController')
-const acceptFriendRequestController = require('../controllers/acceptFriendRequestController')
-const fromMeRequestedController = require('../controllers/fromMeRequestedController')
-const toMeRequestedController = require('../controllers/toMeRequestedController')
+const acceptRequestController = require('../controllers/acceptFriendRequestController')
 const getRequestsController = require('../controllers/getRequestsController')
+const getFriendListController = require('../controllers/getFriendlistController')
 
 const friendsRouter = express.Router()
 
-/** friend request route */
+/** send friend request route */
 friendsRouter.post('/friend_request', friendRequestController)
 
-/** accept friend request */
-friendsRouter.post('/accept_request', acceptFriendRequestController)
+/** accept friend request route */
+friendsRouter.post('/accept_request', acceptRequestController)
 
-/** get requests */
+/** get friend requests route */
 friendsRouter.get('/get_requests/:id/:page/:limit', getRequestsController)
 
-/** get from me requested friends */
-friendsRouter.get('/from_me_requested/:id/:page/:limit', fromMeRequestedController)
-
-/** get to me requested friends */
-friendsRouter.get('/to_me_requested/:id/:page/:limit', toMeRequestedController)
+/** get friend list route */
+friendsRouter.get('/get_friendlist/:id/:page/:limit', getFriendListController)
 
 module.exports = friendsRouter
