@@ -1,4 +1,6 @@
 
+const { UserModel } = require('../models/dbUser')
+
 function socketHandler (socket) {
   const id = socket.handshake.query.id
   socket.join(id)
@@ -7,6 +9,34 @@ function socketHandler (socket) {
   socket.on('on-message', (data) => {
     console.log(data)
     socket.emit('on-received', 'got ya!!!!')
+  })
+
+  socket.on('online', async (message) => {
+    console.log(`${id} is online`)
+    socket.broadcast.emit('socket-online', {
+      id
+    })
+    await UserModel.findOneAndUpdate({
+      _id: id
+    }, {
+      isOnline: true
+    }, {
+      new: true
+    })
+  })
+
+  socket.on('disconnect', async (reason) => {
+    console.log(`socket ${id} disconnected`)
+    socket.broadcast.emit('socket-offline', {
+      id
+    })
+    await UserModel.findOneAndUpdate({
+      _id: id
+    }, {
+      isOnline: false
+    }, {
+      new: true
+    })
   })
 
   socket.on('send-message', (message) => {

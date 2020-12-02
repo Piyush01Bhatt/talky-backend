@@ -5,7 +5,8 @@ const talkyUserSchema = mongoose.Schema({
   password: { type: String, required: true },
   email: { type: String, required: true },
   status: { type: String, default: "Hey I'm using talky" },
-  date: { type: Date, default: Date.now() }
+  date: { type: Date, default: Date.now() },
+  isOnline: { type: Boolean, default: false }
 })
 
 const talkyTempUserSchema = mongoose.Schema({

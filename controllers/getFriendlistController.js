@@ -1,5 +1,5 @@
 const TalkyError = require('../utils/talkyError')
-const { checkRequest, getFriendList } = require('../helpers/getFriendListHelper')
+const { checkRequest, getFriendList, checkIfOnline } = require('../helpers/getFriendListHelper')
 
 async function getFriendListController (req, res) {
   try {
@@ -8,12 +8,13 @@ async function getFriendListController (req, res) {
     const page = req.params.page
     const limit = req.params.limit
     const friendList = await getFriendList(uId, parseInt(page), parseInt(limit))
+    const newFriendList = await checkIfOnline(friendList)
     res.negotiate({
       status: 200,
       body: {
         success: true,
         message: 'gotcha! your friends',
-        data: friendList
+        data: newFriendList
       }
     })
   } catch (err) {

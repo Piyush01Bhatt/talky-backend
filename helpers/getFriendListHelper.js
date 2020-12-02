@@ -1,4 +1,5 @@
 const FriendListModel = require('../models/dbFriendList')
+const { UserModel } = require('../models/dbUser')
 const TalkyError = require('../utils/talkyError.js')
 
 function checkRequest (req) {
@@ -30,7 +31,27 @@ async function getFriendList (uId, page, limit) {
   }
 }
 
+async function checkIfOnline (friendList) {
+  try {
+    for (let i = 0; i < friendList.length; i++) {
+      const friend = friendList[i]
+      const user = await UserModel.findOne({ _id: friend.friendId }).exec()
+      friendList[i] = {
+        ...friendList[i]._doc,
+        isOnline: user.isOnline
+      }
+    }
+    return friendList
+  } catch (err) {
+    if (err instanceof TalkyError) {
+      throw err
+    }
+    throw new TalkyError(err.message, 500)
+  }
+}
+
 module.exports = {
   checkRequest,
-  getFriendList
+  getFriendList,
+  checkIfOnline
 }

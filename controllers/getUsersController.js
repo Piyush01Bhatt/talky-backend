@@ -22,7 +22,7 @@ async function getUsersController (req, res) {
     checkGetUsersRequest(req)
     const dbUsers = await queryDb(req)
     const newDbUsers = await getFriendRequestInfo(dbUsers, req.params.id)
-    res.negotiate({
+    return res.negotiate({
       status: 200,
       body: {
         success: true,

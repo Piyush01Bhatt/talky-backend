@@ -17,15 +17,15 @@ const TalkyError = require('../utils/talkyError.js')
  * @static
  */
 
-function checkGetUsersRequest (req) {
+function checkGetUsersRequest(req) {
   const id = req.params.id
   const page = req.params.page
   const limit = req.params.limit
   const name = req.params.name
   if (!(id &&
-        page &&
-        limit &&
-        name)
+    page &&
+    limit &&
+    name)
   ) {
     throw new TalkyError('missing request', 400)
   }
@@ -44,7 +44,7 @@ function checkGetUsersRequest (req) {
  * @static
  */
 
-async function queryDb (req) {
+async function queryDb(req) {
   try {
     const PAGE_SIZE = parseInt(req.params.page)
     const limit = parseInt(req.params.limit)
@@ -86,19 +86,31 @@ async function getFriendRequestInfo (dbUsers, uId) {
   try {
     for (let i = 0; i < dbUsers.length; i++) {
       const user = dbUsers[i]
-      // check if already send a friend request
-      const friend = await FriendsModel.findOne({ u_id: user._id, fo_id: uId }).exec()
-      if (!friend) {
-        // check if received a request
-        const pair = await checkIfReceivedRequest(user, uId)
-        dbUsers[i] = { ...dbUsers[i]._doc, ...pair }
-      } else {
-        const pair = {
+      // check if user itself
+      if (user._id.toString() === uId) {
+        const selfPair = {
+          isSelf: true,
           received: false,
-          requested: true,
-          accepted: friend.accepted
+          requested: false,
+          accepted: false
         }
-        dbUsers[i] = { ...dbUsers[i]._doc, ...pair }
+        dbUsers[i] = { ...dbUsers[i]._doc, ...selfPair }
+      } else {
+        // check if already send a friend request
+        const friend = await FriendsModel.findOne({ u_id: user._id, fo_id: uId }).exec()
+        if (!friend) {
+          // check if received a request
+          const pair = await checkIfReceivedRequest(user, uId)
+          dbUsers[i] = { ...dbUsers[i]._doc, ...pair }
+        } else {
+          const pair = {
+            isSelf: false,
+            received: false,
+            requested: true,
+            accepted: friend.accepted
+          }
+          dbUsers[i] = { ...dbUsers[i]._doc, ...pair }
+        }
       }
     }
     return dbUsers
@@ -117,17 +129,19 @@ async function getFriendRequestInfo (dbUsers, uId) {
  * @inner
  */
 
-async function checkIfReceivedRequest (user, uId) {
+async function checkIfReceivedRequest(user, uId) {
   try {
     const receivedReq = await FriendsModel.findOne({ u_id: uId, fo_id: user._id }).exec()
     if (receivedReq) {
       return {
         received: true,
         requested: false,
+        isSelf: false,
         accepted: receivedReq.accepted
       }
     } else {
       return {
+        isSelf: false,
         received: false,
         requested: false,
         accepted: false

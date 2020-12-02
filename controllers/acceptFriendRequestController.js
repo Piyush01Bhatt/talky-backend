@@ -21,6 +21,12 @@ async function acceptFriendRequestController (req, res) {
     checkRequest(req)
     const friend = await acceptRequest(req)
     await addToFriendList(friend)
+    /** emit accepted event */
+    res.io.to(req.body.friendId).emit('accepted-request', {
+      name: friend.name,
+      status: friend.status,
+      friendId: friend.u_id
+    })
     res.negotiate({
       status: 201,
       body: {
