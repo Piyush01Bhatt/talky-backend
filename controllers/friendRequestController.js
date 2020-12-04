@@ -31,7 +31,8 @@ async function friendRequestController (req, res) {
       message: 'received request',
       from: fromUser.name,
       id: fromUser._id,
-      status: fromUser.status
+      status: fromUser.status,
+      isOnline: fromUser.isOnline
     })
     res.negotiate({
       status: 201,

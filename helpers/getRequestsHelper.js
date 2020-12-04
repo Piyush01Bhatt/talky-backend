@@ -38,7 +38,8 @@ async function addSentUserInfo (friends) {
       const sentUser = await UserModel.findOne({ _id: foId }).exec()
       const sentUserInfo = {
         sentUserName: sentUser.name,
-        sentUserStatus: sentUser.status
+        sentUserStatus: sentUser.status,
+        sentUserIsOnline: sentUser.isOnline
       }
       friends[i] = {
         ...friends[i]._doc,
