@@ -4,15 +4,12 @@ const { UserModel } = require('../models/dbUser')
 function socketHandler (socket) {
   const id = socket.handshake.query.id
   socket.join(id)
-  console.log(`New WebSocket Connection from ${id}`)
 
   socket.on('on-message', (data) => {
-    console.log(data)
     socket.emit('on-received', 'got ya!!!!')
   })
 
   socket.on('online', async (message) => {
-    console.log(`${id} is online`)
     socket.broadcast.emit('socket-online', {
       id
     })
@@ -26,7 +23,6 @@ function socketHandler (socket) {
   })
 
   socket.on('disconnect', async (reason) => {
-    console.log(`socket ${id} disconnected`)
     socket.broadcast.emit('socket-offline', {
       id
     })
@@ -40,8 +36,6 @@ function socketHandler (socket) {
   })
 
   socket.on('send-message', (message) => {
-    console.log('send-message event reveived')
-    console.log(message)
     socket.to(message.to_id).emit('received-message', {
       from_name: message.from_name,
       to_name: message.to_name,
@@ -50,7 +44,6 @@ function socketHandler (socket) {
       message: message.msg,
       timestamp: message.timestamp
     })
-    console.log('sent the message')
   })
 }
 

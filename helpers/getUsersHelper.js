@@ -48,7 +48,8 @@ async function queryDb(req) {
   try {
     const PAGE_SIZE = parseInt(req.params.page)
     const limit = parseInt(req.params.limit)
-    const skip = (PAGE_SIZE - 1) * limit
+    const pageMul = (PAGE_SIZE === 1) ? limit : (limit - 1)
+    const skip = (PAGE_SIZE - 1) * pageMul
     const regStr = '^' + req.params.name
     const regex = new RegExp(regStr)
     const dbUsers = await UserModel.find({ name: regex })
@@ -61,7 +62,7 @@ async function queryDb(req) {
       throw new TalkyError("can't query db", 500)
     }
     if (dbUsers.length < 1) {
-      throw new TalkyError('empty array returned', 512)
+      throw new TalkyError('empty array returned', 500)
     }
     return dbUsers
   } catch (err) {

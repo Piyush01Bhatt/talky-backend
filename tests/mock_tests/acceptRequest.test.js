@@ -35,7 +35,6 @@ test('Should accept request', async () => {
       userId: '5f6b42673ffbaf4af3827907',
       friendId: '5fa4ed0f8da64e3dbd0ed37d'
     })
-  console.log(response.body)
   expect(response.statusCode).toBe(201)
   expect(response.body.success).toBe(true)
   expect(response.body.message).toBe('request accepted successfully')

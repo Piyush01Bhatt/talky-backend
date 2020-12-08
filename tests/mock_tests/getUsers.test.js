@@ -133,4 +133,14 @@ test('get user named kinnu for pagination', async () => {
     .get('/user/get_users/5f6b42673ffbaf4af3827907/kinnu/1/3')
     .send()
   expect(response3.statusCode).toBe(200)
+  // request 4 ... page 3
+  const response4 = await request(app)
+    .get('/user/get_users/5f6b42673ffbaf4af3827907/kinnu/3/3')
+    .send()
+  console.log(response4.body)
+  // request 4 ... page 4
+  const response5 = await request(app)
+    .get('/user/get_users/5f6b42673ffbaf4af3827907/kinnu/4/3')
+    .send()
+  console.log(response5.body)
 })

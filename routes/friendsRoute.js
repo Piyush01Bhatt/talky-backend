@@ -3,6 +3,7 @@ const friendRequestController = require('../controllers/friendRequestController'
 const acceptRequestController = require('../controllers/acceptFriendRequestController')
 const getRequestsController = require('../controllers/getRequestsController')
 const getFriendListController = require('../controllers/getFriendlistController')
+const rejectFriendRequestController = require('../controllers/rejectFriendRequestController')
 
 const friendsRouter = express.Router()
 
@@ -11,6 +12,9 @@ friendsRouter.post('/friend_request', friendRequestController)
 
 /** accept friend request route */
 friendsRouter.post('/accept_request', acceptRequestController)
+
+/** reject friend request route */
+friendsRouter.post('/reject_request', rejectFriendRequestController)
 
 /** get friend requests route */
 friendsRouter.get('/get_requests/:id/:page/:limit', getRequestsController)

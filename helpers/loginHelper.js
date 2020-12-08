@@ -67,7 +67,6 @@ function checkPassword (dbUser, passwd) {
       .digest('hex')
 
     if (hash === dbUser.password) {
-      console.log('password matched')
       return dbUser
     } else {
       throw new TalkyError('Password not Matched', 400)

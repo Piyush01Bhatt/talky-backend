@@ -4,6 +4,7 @@
   "description": "chat application",
   "main": "server.js",
   "scripts": {
+    "start": "node server.js",
     "test": "jest --detectOpenHandles tests",
     "doc": "jsdoc -c jsdoc.json server.js -R ./README.md"
   },
@@ -17,6 +18,7 @@
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "googleapis": "^66.0.0",
     "mongoose": "^5.10.5",
     "node-mailer": "^0.1.1",
     "nodemailer": "^6.4.11",

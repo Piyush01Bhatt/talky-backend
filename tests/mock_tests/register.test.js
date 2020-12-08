@@ -24,8 +24,7 @@ test('Should temporary register a user', async () => {
   const response = await request(app).post('/user/register').send({
     name: 'Piyush',
     password: 'pass123',
-    email: 'piyush.bhatt@gmail.com'
+    email: 'piyush007bhatt@gmail.com'
   })
   expect(response.statusCode).toBe(201)
 })
-
